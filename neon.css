@@ -1,0 +1,72 @@
+:root {
+    --black: #000;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    background: var(--black);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Container {
+    overflow: hidden;
+    position: relative;
+    filter: contrast(100%) brightness(100%);
+}
+
+.neon {
+    position: reative; 
+    color: transparent;
+    background: var(--black);
+    font: 900 220px "lato", cambria;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+}
+
+.neon::before,
+.neon::after {
+    content: attr(data-text);
+    position: absolute;
+    color: rgb(255, 255, 255);
+    filter: blur(3px);
+    left: 0;
+}
+
+.neon::after {
+    mix-blend-mode: difference;
+}
+
+.gradient, .spotlight {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+}
+
+.gradient {
+    background: linear-gradient(45deg, rgb(215, 236, 25), rgb(236, 8, 168));
+    mix-blend-mode: multiply;
+}
+
+.spotlight{
+    background: radial-gradient(circle, rgb(253, 253, 253), transparent 50%) 9px 0/50% 30%,
+                radial-gradient(circle, #fff, rgb(236, 185, 18) 25%) 80% 10%/ 32.5% 32.5%;
+    top: -100%;
+    left: -100%;
+    mix-blend-mode: color-dodge;
+    animation: light 5s cubic-bezier(0, 0, 0, 0) infinite;
+}
+
+@keyframes light {
+    100% {
+        transform: translate3d(50%, 50%, 0)
+    }
+}
